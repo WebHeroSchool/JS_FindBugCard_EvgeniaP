@@ -1,7 +1,6 @@
 const menuItem = document.getElementsByClassName('menu__item-text');
 const btn = document.getElementById('btn');
-const header = document.getElementById('header');
-const nav = document.getElementById('nav');
+const menu = document.getElementById('container');
 const card = document.querySelectorAll('.card');
 const back = document.querySelectorAll('.card__back');
 const face = document.querySelectorAll('.card__face');
@@ -20,8 +19,7 @@ const face = document.querySelectorAll('.card__face');
 
         btn.onclick = function() {
             const level = document.getElementById(activelevel);
-            header.classList.add('hidden');
-            nav.classList.add('hidden');
+            menu.classList.add('hidden');
             level.classList.add('active-level');
             const randomCard = level.querySelectorAll('.card__face');
             const random = Math.floor(Math.random() * randomCard.length);
