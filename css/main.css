@@ -115,7 +115,7 @@
 
 .card-container
 {
-    display: grid;
+    display: none;
 
     width: 100%;
     height: 100vh;
@@ -127,21 +127,21 @@
 
 .easy-level
 {
-    display: none;
+    display: grid;
     grid-template-columns: 218px 218px 218px;
     grid-template-rows: 341px;
 }
 
 .medium-level
 {
-    display: none;
+    display: grid;
     grid-template-columns: 218px 218px 218px;
     grid-template-rows: 341px 341px;
 }
 
 .hard-level
 {
-    display: none;
+    display: grid;
     grid-template-columns: 218px 218px 218px 218px 218px;
     grid-template-rows: 341px 341px;
 }
@@ -252,8 +252,6 @@
 @media (max-width: 1439px) {
     .header
 {
-
-
     margin-bottom: 30px;
 }
 

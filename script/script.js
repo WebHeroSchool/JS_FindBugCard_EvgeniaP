@@ -1,9 +1,10 @@
 const menuItem = document.getElementsByClassName('menu__item-text');
 const btn = document.getElementById('btn');
 const menu = document.getElementById('container');
-const card = document.querySelectorAll('.card');
+const card = document.getElementById('card');
 const back = document.querySelectorAll('.card__back');
 const face = document.querySelectorAll('.card__face');
+const cardContainer = document.getElementById('card-container');
 
 
 [].forEach.call(menuItem, function(elem, i) {
@@ -18,20 +19,37 @@ const face = document.querySelectorAll('.card__face');
         const activelevel = menuItem[i].getAttribute('id') + '-level';
 
         btn.onclick = function() {
-            const level = document.getElementById(activelevel);
+
             menu.classList.add('hidden');
-            level.classList.add('active-level');
-            const randomCard = level.querySelectorAll('.card__face');
+            cardContainer.classList.add(activelevel);
+            addCard();
+            function addCard() {
+                let adeedCards;            
+                
+                if (activelevel === 'easy-level') {
+                    addedCards = 2;
+                } else if (activelevel === 'medium-level') {
+                    addedCards = 5;
+                } else if (activelevel === 'hard-level') {
+                    addedCards = 9;
+                }
+
+                for (let i = 0; i < addedCards; i++) {
+                    createCard(card);
+                }
+            }
+            
+            const randomCard = cardContainer.querySelectorAll('.card__face');
             const random = Math.floor(Math.random() * randomCard.length);
             randomCard[random].classList.add('card__face-bug');
+            const allCards = document.querySelectorAll('.card');
+            cardHover(allCards);
+            flipTheCard(allCards);
         }
 
     });
 
 });
-
-cardHover(card);
-flipTheCard(card);
 
 
 function cardHover(el) {
@@ -61,9 +79,14 @@ function flipTheCard(el) {
                 }
             } else {
                 item.classList.add('card-return');
-                back[i].classList.add('card__back-transform');
-                face[i].classList.add('card__face-transform');
+                item.children[0].classList.add('card__back-transform');
+                item.children[1].classList.add('card__face-transform');
             }
         });
     });
+}
+
+function createCard(card) {
+    let newCard = card.cloneNode(true);
+    cardContainer.appendChild(newCard);
 }
