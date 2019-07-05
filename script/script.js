@@ -1,4 +1,4 @@
-const menuItem = document.getElementsByClassName('menu__item-text');
+const menuItem = document.querySelectorAll('.menu__item-text');
 const btn = document.getElementById('btn');
 const menu = document.getElementById('container');
 const card = document.getElementById('card');
@@ -7,12 +7,12 @@ const face = document.querySelectorAll('.card__face');
 const cardContainer = document.getElementById('card-container');
 
 
-[].forEach.call(menuItem, function(elem, i) {
+menuItem.forEach(function(elem, i) {
 
     menuItem[i].addEventListener('click', event => {
 
-        const rectanagle = document.getElementsByClassName('menu__item-rectanagle');
-        [].forEach.call(rectanagle, function(elem) {
+        const rectanagle = document.querySelectorAll('.menu__item-rectanagle');
+        rectanagle.forEach(function(elem) {
             elem.classList.remove('active');
         });
         rectanagle[i].classList.add('active');
@@ -38,7 +38,7 @@ const cardContainer = document.getElementById('card-container');
                     createCard(card);
                 }
             }
-            
+
             const randomCard = cardContainer.querySelectorAll('.card__face');
             const random = Math.floor(Math.random() * randomCard.length);
             randomCard[random].classList.add('card__face-bug');
