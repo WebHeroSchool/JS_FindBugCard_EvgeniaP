@@ -52,28 +52,28 @@ menuItem.forEach(function(elem, i) {
 });
 
 
-function cardHover(el) {
-    el.forEach(function(item) {
-        item.addEventListener('mouseover', function f() {
+function cardHover(cards) {
+    cards.forEach(function(item) {
+        item.addEventListener('mouseover', function() {
             item.classList.add('card-hover');
             item.addEventListener('mouseout', event => {
                 item.classList.remove('card-hover');
             });
             item.onclick = function() {
-                item.removeEventListener('mouseover', f);
+                item.removeEventListener('mouseover', cardHover);
             }
         });
     });
 }
 
 
-function flipTheCard(el) {
+function flipTheCard(cards) {
     let count = 0;
-    el.forEach(function(item, i) {
-        item.addEventListener('click', function f() {
+    cards.forEach(function(item, i) {
+        item.addEventListener('click', function() {
             count++;
             if (count > 1) {
-                item.removeEventListener('click', f);
+                item.removeEventListener('click', flipTheCard);
                 this.onclick = function() {
                     location.reload();
                 }
