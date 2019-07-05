@@ -45,6 +45,7 @@ menuItem.forEach(function(elem, i) {
             const allCards = document.querySelectorAll('.card');
             cardHover(allCards);
             flipTheCard(allCards);
+            btn.onclick = null;
         }
 
     });
