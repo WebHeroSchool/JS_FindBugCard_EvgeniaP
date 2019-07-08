@@ -19,7 +19,6 @@ const config = {
     selector: {
         menuItem: '.menu__item-text',
         card: '.card',
-        back: '.card__back',
         face: '.card__face',
         rectanagle: '.menu__item-rectanagle'
     },
@@ -35,8 +34,6 @@ const menuItem = document.querySelectorAll(config.selector.menuItem);
 const btn = document.getElementById(config.id.btn);
 const menu = document.getElementById(config.id.container);
 const card = document.getElementById(config.id.card);
-const back = document.querySelectorAll(config.selector.back);
-const face = document.querySelectorAll(config.selector.face);
 const cardContainer = document.getElementById(config.id.cardСontainer);
 
 
