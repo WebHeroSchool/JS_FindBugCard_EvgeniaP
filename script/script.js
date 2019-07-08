@@ -1,36 +1,69 @@
-const menuItem = document.querySelectorAll('.menu__item-text');
-const btn = document.getElementById('btn');
-const menu = document.getElementById('container');
-const card = document.getElementById('card');
-const back = document.querySelectorAll('.card__back');
-const face = document.querySelectorAll('.card__face');
-const cardContainer = document.getElementById('card-container');
+const config = {
+    class: {
+        active: 'active',
+        hidden: 'hidden',
+        bug: 'card__face-bug',
+        cardHover: 'card-hover',
+        cardReturn: 'card-return',
+        cardBackTransform: 'card__back-transform',
+        cardFaceTransform: 'card__face-transform'
+    },
+    
+    id: {
+        btn: 'btn',
+        container: 'container',
+        card: 'card',
+        cardСontainer: 'card-container'
+    },
+    
+    selector: {
+        menuItem: '.menu__item-text',
+        card: '.card',
+        back: '.card__back',
+        face: '.card__face',
+        rectanagle: '.menu__item-rectanagle'
+    },
+
+    levels: {
+        easy: 'easy-level',
+        medium: 'medium-level',
+        hard: 'hard-level'
+    }
+}
+
+const menuItem = document.querySelectorAll(config.selector.menuItem);
+const btn = document.getElementById(config.id.btn);
+const menu = document.getElementById(config.id.container);
+const card = document.getElementById(config.id.card);
+const back = document.querySelectorAll(config.selector.back);
+const face = document.querySelectorAll(config.selector.face);
+const cardContainer = document.getElementById(config.id.cardСontainer);
 
 
 menuItem.forEach(function(elem, i) {
 
     menuItem[i].addEventListener('click', event => {
 
-        const rectanagle = document.querySelectorAll('.menu__item-rectanagle');
+        const rectanagle = document.querySelectorAll(config.selector.rectanagle);
         rectanagle.forEach(function(elem) {
-            elem.classList.remove('active');
+            elem.classList.remove(config.class.active);
         });
-        rectanagle[i].classList.add('active');
+        rectanagle[i].classList.add(config.class.active);
         const activelevel = menuItem[i].getAttribute('id') + '-level';
 
         btn.onclick = function() {
 
-            menu.classList.add('hidden');
+            menu.classList.add(config.class.hidden);
             cardContainer.classList.add(activelevel);
             addCard();
             function addCard() {
                 let adeedCards;            
                 
-                if (activelevel === 'easy-level') {
+                if (activelevel === config.levels.easy) {
                     addedCards = 2;
-                } else if (activelevel === 'medium-level') {
+                } else if (activelevel === config.levels.medium) {
                     addedCards = 5;
-                } else if (activelevel === 'hard-level') {
+                } else if (activelevel === config.levels.hard) {
                     addedCards = 9;
                 }
 
@@ -39,10 +72,10 @@ menuItem.forEach(function(elem, i) {
                 }
             }
 
-            const randomCard = cardContainer.querySelectorAll('.card__face');
+            const randomCard = cardContainer.querySelectorAll(config.selector.face);
             const random = Math.floor(Math.random() * randomCard.length);
-            randomCard[random].classList.add('card__face-bug');
-            const allCards = document.querySelectorAll('.card');
+            randomCard[random].classList.add(config.class.bug);
+            const allCards = document.querySelectorAll(config.selector.card);
             cardHover(allCards);
             flipTheCard(allCards);
             btn.onclick = null;
@@ -56,9 +89,9 @@ menuItem.forEach(function(elem, i) {
 function cardHover(cards) {
     cards.forEach(function(item) {
         item.addEventListener('mouseover', function() {
-            item.classList.add('card-hover');
+            item.classList.add(config.class.cardHover);
             item.addEventListener('mouseout', event => {
-                item.classList.remove('card-hover');
+                item.classList.remove(config.class.cardHover);
             });
             item.onclick = function() {
                 item.removeEventListener('mouseover', cardHover);
@@ -79,9 +112,9 @@ function flipTheCard(cards) {
                     location.reload();
                 }
             } else {
-                item.classList.add('card-return');
-                item.children[0].classList.add('card__back-transform');
-                item.children[1].classList.add('card__face-transform');
+                item.classList.add(config.class.cardReturn);
+                item.children[0].classList.add(config.class.cardBackTransform);
+                item.children[1].classList.add(config.class.cardFaceTransform);
             }
         });
     });
